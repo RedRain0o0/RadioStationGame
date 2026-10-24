@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://dreojvqcgr537"]
+
+[ext_resource type="Script" uid="uid://t4l02u74gsuc" path="res://Scenes/Templates/PlayerController.gd" id="1_2be4l"]
+[ext_resource type="PackedScene" uid="uid://c5ihhyg5vtahe" path="res://Assets/Models/Entity/LOWPOLYMALE.fbx" id="2_1m677"]
+[ext_resource type="PackedScene" uid="uid://duwppk8l5bmll" path="res://Scenes/Templates/PauseScreen.tscn" id="3_y00gc"]
+[ext_resource type="PackedScene" uid="uid://d06tmbx64jqy2" path="res://Scenes/Templates/PlayerUI.tscn" id="4_1m677"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y00gc"]
+radius = 0.4
+height = 1.727
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uwvat"]
+radius = 0.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_uwvat"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Animation" id="Animation_26822"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_1m677"]
+resource_name = "headbob"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_26822"]
+_data = {
+&"RESET": SubResource("Animation_26822"),
+&"headbob": SubResource("Animation_1m677")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=230329552 groups=["player"]]
+script = ExtResource("1_2be4l")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=713296534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.864, 0)
+shape = SubResource("CapsuleShape3D_y00gc")
+
+[node name="WorldModel" type="Node3D" parent="." unique_id=1409105808]
+unique_name_in_owner = true
+
+[node name="LOWPOLYMALE" parent="WorldModel" unique_id=550941205 instance=ExtResource("2_1m677")]
+transform = Transform3D(-0.7, 0, 1.0569706e-07, 0, 0.7, 0, -1.0569706e-07, 0, -0.7, 0, 0.15, 0)
+
+[node name="CameraModel" type="Node3D" parent="." unique_id=1217195733]
+unique_name_in_owner = true
+
+[node name="StairsAheadRaycast" type="RayCast3D" parent="." unique_id=1458175327]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.552, -0.822)
+target_position = Vector3(0, -0.566, 0)
+
+[node name="StairsBelowRaycast" type="RayCast3D" parent="." unique_id=1120687082]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9802322e-08, 2.3841858e-07)
+
+[node name="HeadOriginalPosition" type="Node3D" parent="." unique_id=562236585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5762457, 0)
+
+[node name="Head" type="Node3D" parent="HeadOriginalPosition" unique_id=144772738]
+unique_name_in_owner = true
+
+[node name="CameraSmooth" type="Node3D" parent="HeadOriginalPosition/Head" unique_id=1178961571]
+unique_name_in_owner = true
+
+[node name="Camera" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmooth" unique_id=911822304]
+unique_name_in_owner = true
+cull_mask = 1048573
+fov = 90.0
+
+[node name="InteractCast" type="ShapeCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/Camera" unique_id=428003651]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_uwvat")
+target_position = Vector3(0, 0, -2)
+max_results = 2
+collide_with_areas = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HeadOriginalPosition/Head/CameraSmooth/Camera" unique_id=250783913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
+visible = false
+mesh = SubResource("SphereMesh_uwvat")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HeadOriginalPosition/Head" unique_id=1207577828]
+libraries/ = SubResource("AnimationLibrary_26822")
+
+[node name="PlayerUi" parent="." unique_id=2042884612 instance=ExtResource("4_1m677")]
+
+[node name="PauseScreen" parent="." unique_id=828136656 instance=ExtResource("3_y00gc")]
+offset_bottom = 6.1035156e-05

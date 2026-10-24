@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dhg07iiokqsjk"]
+
+[ext_resource type="Texture2D" uid="uid://c10vi6x8dgehn" path="res://Assets/Textures/UI/Computer/cursor.png" id="1_0squw"]
+[ext_resource type="Script" uid="uid://d0gac18kxpwxe" path="res://Scenes/Templates/ComputerUI.gd" id="1_5g1i0"]
+
+[node name="ComputerUi" type="Control" unique_id=1639805067]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5g1i0")
+
+[node name="MouseCursor" type="Control" parent="." unique_id=1706088393]
+top_level = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseCursor" unique_id=1249721165]
+texture = ExtResource("1_0squw")
+offset = Vector2(16, 16)
+
+[node name="WallpaperColor" type="ColorRect" parent="." unique_id=1177178723]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.5019608, 0.5019608, 1)
+
+[node name="WallpaperTexture" type="TextureRect" parent="." unique_id=897998184]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TaskBarBG" type="ColorRect" parent="." unique_id=332290070]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+
+[node name="TaskBarHBox" type="HBoxContainer" parent="TaskBarBG" unique_id=182256895]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Button" type="Button" parent="TaskBarBG/TaskBarHBox" unique_id=1035654421]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Start"
+
+[node name="WindowButtons" type="HBoxContainer" parent="TaskBarBG/TaskBarHBox" unique_id=226555104]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TaskBarBG/TaskBarHBox" unique_id=417264261]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label" type="Label" parent="TaskBarBG/TaskBarHBox/HBoxContainer2" unique_id=2022191938]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "10:30 PM"
+
+[node name="Button" type="Button" parent="." unique_id=206920065]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Test"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1342334172]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.25
+offset_top = 21.0
+offset_right = 34.25
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2

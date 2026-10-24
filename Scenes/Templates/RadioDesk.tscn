@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://1oy0tfmbwe55"]
+
+[ext_resource type="Script" uid="uid://cs0h0drhbf8fo" path="res://Scenes/Templates/Monitor.gd" id="1_vqa8s"]
+[ext_resource type="Script" uid="uid://c630wkjauwqev" path="res://Scripts/Interactable.gd" id="2_vqa8s"]
+[ext_resource type="PackedScene" uid="uid://dhg07iiokqsjk" path="res://Scenes/Templates/ComputerUI.tscn" id="3_vqa8s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uwvat"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vbviy"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2hff8"]
+viewport_path = NodePath("Monitor/MonitorScreen/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vqa8s"]
+viewport_path = NodePath("Monitor/MonitorScreen/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwvat"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_2hff8")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_vqa8s")
+
+[sub_resource type="QuadMesh" id="QuadMesh_uwvat"]
+size = Vector2(0.4, 0.3)
+
+[node name="RadioDesk" type="CSGCombiner3D" unique_id=295982713]
+use_collision = true
+
+[node name="Desk" type="CSGBox3D" parent="." unique_id=1878466724]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Computer" type="CSGBox3D" parent="." unique_id=1998646186]
+transform = Transform3D(0.401, 0, 0, 0, 0.114, 0, 0, 0, 0.361, 0.432, 1.057, -0.109)
+
+[node name="Monitor" type="Node3D" parent="." unique_id=1296946548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432, 1.114, -0.109)
+
+[node name="MonitorStand" type="CSGBox3D" parent="Monitor" unique_id=2122241242]
+transform = Transform3D(0.25, 0, 0, 0, 0.01, 0, 0, 0, 0.15500002, 0, 0.004999995, 0)
+
+[node name="MonitorArm" type="CSGBox3D" parent="Monitor" unique_id=1810205895]
+transform = Transform3D(0.05, 0, 0, 0, 0.3, 0, 0, 0, 0.05, 0, 0.15100002, -0.049999714)
+
+[node name="MonitorScreen" type="StaticBody3D" parent="Monitor" unique_id=1261984741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251, 0)
+script = ExtResource("1_vqa8s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor/MonitorScreen" unique_id=86953245]
+transform = Transform3D(0.4, 0, 0, 0, 0.3, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_uwvat")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monitor/MonitorScreen" unique_id=153347763]
+transform = Transform3D(0.4, 0, 0, 0, 0.3, 0, 0, 0, 0.05, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_vbviy")
+
+[node name="Interactable" type="Node" parent="Monitor/MonitorScreen" unique_id=793702296]
+script = ExtResource("2_vqa8s")
+interact_name = "Monitor"
+metadata/_custom_type_script = "uid://c630wkjauwqev"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Monitor/MonitorScreen" unique_id=768881506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.025198162)
+material_override = SubResource("StandardMaterial3D_uwvat")
+mesh = SubResource("QuadMesh_uwvat")
+
+[node name="SubViewport" type="SubViewport" parent="Monitor/MonitorScreen" unique_id=1979209353]
+size = Vector2i(640, 480)
+
+[node name="ComputerUi" parent="Monitor/MonitorScreen/SubViewport" unique_id=1639805067 instance=ExtResource("3_vqa8s")]
+
+[node name="CameraFocusPoint" type="Node3D" parent="Monitor" unique_id=2056031956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251, 0.5)
+
+[node name="Camera3D" type="Camera3D" parent="Monitor/CameraFocusPoint" unique_id=2048562121]
+fov = 40.0
+
+[connection signal="interacted" from="Monitor/MonitorScreen/Interactable" to="Monitor/MonitorScreen" method="interact_monitor"]

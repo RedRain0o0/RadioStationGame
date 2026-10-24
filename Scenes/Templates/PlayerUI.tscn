@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://d06tmbx64jqy2"]
+
+[ext_resource type="Script" uid="uid://c7mdyp3am4ens" path="res://Scenes/Templates/PlayerUI.gd" id="1_cmbgv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5h52"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hff8"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.23529412)
+
+[node name="PlayerUi" type="Control" unique_id=2042884612]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_cmbgv")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=591594440]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FPSLabel" type="Label" parent="MarginContainer" unique_id=564880834]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 1
+text = "FPS: NAN"
+
+[node name="Crosshair" type="Panel" parent="MarginContainer" unique_id=1262129522]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_a5h52")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1329675340]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OffsetLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=513219709]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+text = "Item Name"
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1383070052]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="InteractableLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=625836095]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = "Item Name"
+
+[node name="Panel" type="Panel" parent="." unique_id=935096504]
+visible = false
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2hff8")
+
+[node name="Panel2" type="Panel" parent="Panel" unique_id=1362123893]
+visible = false
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2hff8")
+
+[node name="InteractableInfo" type="PanelContainer" parent="Panel" unique_id=802294353]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 155.0
+offset_bottom = 33.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/InteractableInfo" unique_id=911641591]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Panel/InteractableInfo/MarginContainer" unique_id=906577128]
+layout_mode = 2
+text = "Interactable Info"
+
+[node name="InteractableActions" type="PanelContainer" parent="Panel" unique_id=1995863649]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 400.0
+offset_top = -400.0
+offset_right = 555.0
+offset_bottom = -367.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/InteractableActions" unique_id=1963422242]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/InteractableActions/MarginContainer" unique_id=700374074]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/InteractableActions/MarginContainer/VBoxContainer" unique_id=214647118]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/InteractableActions/MarginContainer/VBoxContainer/HBoxContainer" unique_id=850448370]
+layout_mode = 2
+text = ">"
+
+[node name="Label2" type="Label" parent="Panel/InteractableActions/MarginContainer/VBoxContainer/HBoxContainer" unique_id=490106843]
+layout_mode = 2
+text = "#. Action Name"
+
+[node name="Label" type="Label" parent="Panel" unique_id=1461139799]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 145.0
+text = "Interactable Name"
