@@ -63,7 +63,7 @@ func unstuck() -> void:
 	self.global_position = Vector3.ZERO
 
 func _ready() -> void:
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.fov = ConfigHandler.load_graphics_settings().get("fov")
 	GameManager.player_reference = self
 	for child in %WorldModel.find_children("*", "VisualInstance3D"):
@@ -187,7 +187,7 @@ func _handle_crouch(delta: float) -> void:
 	$Collider.position.y = $Collider.shape.height * 0.5
 
 func _handle_noclip(delta: float) -> bool:
-	if Input.is_action_just_pressed("noclip") and OS.has_feature("debug"):
+	if can_move and Input.is_action_just_pressed("noclip") and OS.has_feature("debug"):
 		noclip = !noclip
 		noclip_speed_multiplier = 3.0
 	

@@ -8,7 +8,7 @@ const unfocused_text_color: Color = Color(0.753, 0.753, 0.753, 1.0)
 
 @onready var computer_ui: ComputerUI = $"../.."
 @onready var focus_bar: ColorRect = $VBoxContainer/FocusBar
-@onready var window_title: Label = $VBoxContainer/FocusBar/HBoxContainer/WindowTitle
+@onready var window_title: RichTextLabel = $VBoxContainer/FocusBar/HBoxContainer/WindowTitle
 
 var dragging: bool = false
 var mouse_offset: Vector2 = Vector2.ZERO

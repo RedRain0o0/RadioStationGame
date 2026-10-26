@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ds43xqlum7o0" path="res://Scenes/Templates/BaseWindow.gd" id="1_du8tn"]
 [ext_resource type="Theme" uid="uid://bngx620dn0601" path="res://Assets/Themes/Computer/Computer.tres" id="1_x723c"]
+[ext_resource type="Texture2D" uid="uid://ckkj8m6kvkdp4" path="res://Assets/Textures/UI/Computer/StartIcon.png" id="3_2at4e"]
 [ext_resource type="Texture2D" uid="uid://35o7i6rl2gt2" path="res://Assets/Themes/Computer/CloseButton.png" id="3_tfa8d"]
 
 [node name="BaseWindow" type="PanelContainer" unique_id=1192623678]
@@ -35,16 +36,23 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
 
-[node name="Control" type="Control" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=1202330176]
+[node name="WindowIcon" type="TextureRect" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=233994416]
+custom_minimum_size = Vector2(20, 18)
+custom_maximum_size = Vector2(20, 18)
 layout_mode = 2
-mouse_filter = 1
+texture = ExtResource("3_2at4e")
+stretch_mode = 3
 
-[node name="WindowTitle" type="Label" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=20523884]
+[node name="WindowTitle" type="RichTextLabel" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=1440848689]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 mouse_filter = 1
-theme = ExtResource("1_x723c")
-theme_override_font_sizes/font_size = 8
-text = "Window Title"
+bbcode_enabled = true
+text = "[b]Window Title"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=815379434]
 layout_mode = 2
@@ -73,7 +81,6 @@ layout_mode = 2
 
 [node name="CloseButton" type="TextureButton" parent="VBoxContainer/FocusBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1378649071]
 layout_mode = 2
-theme = ExtResource("1_x723c")
 texture_normal = ExtResource("3_tfa8d")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1349308729]
@@ -86,8 +93,8 @@ theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="TextureRect" type="ColorRect" parent="VBoxContainer/MarginContainer" unique_id=358164942]
-visible = false
 layout_mode = 2
+color = Color(1, 0, 1, 1)
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/TextureRect" unique_id=51227283]
 layout_mode = 0

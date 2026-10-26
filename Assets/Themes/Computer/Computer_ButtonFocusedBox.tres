@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://dmupippdq63yk"]
+
+[ext_resource type="Texture2D" uid="uid://h88h63m02roa" path="res://Assets/Themes/Computer/ButtonFocused.png" id="1_2uxjt"]
+
+[resource]
+texture = ExtResource("1_2uxjt")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
