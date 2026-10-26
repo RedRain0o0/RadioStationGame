@@ -262,7 +262,7 @@ func _physics_process(delta: float) -> void:
 	if not _handle_noclip(delta):
 		_handle_crouch(delta)
 		if is_on_floor() or _snapped_to_stairs_last_frame:
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") and can_move:
 				self.velocity.y = jump_velocity
 			_handle_ground_physics(delta)
 		else:

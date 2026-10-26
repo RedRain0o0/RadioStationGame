@@ -1,24 +1,41 @@
 [gd_scene format=3 uid="uid://dhg07iiokqsjk"]
 
 [ext_resource type="Texture2D" uid="uid://c10vi6x8dgehn" path="res://Assets/Textures/UI/Computer/cursor.png" id="1_0squw"]
+[ext_resource type="Theme" uid="uid://bngx620dn0601" path="res://Assets/Themes/Computer/Computer.tres" id="1_4n2js"]
 [ext_resource type="Script" uid="uid://d0gac18kxpwxe" path="res://Scenes/Templates/ComputerUI.gd" id="1_5g1i0"]
+[ext_resource type="Texture2D" uid="uid://bawqbtd61kpeu" path="res://Assets/Themes/Computer/Taskbar.png" id="4_4n2js"]
+[ext_resource type="FontFile" uid="uid://c2l7cqidnif58" path="res://Assets/Themes/Computer/8pt.png" id="5_vlep0"]
+[ext_resource type="Texture2D" uid="uid://ckkj8m6kvkdp4" path="res://Assets/Textures/UI/Computer/StartIcon.png" id="5_wvpvt"]
+[ext_resource type="Texture2D" uid="uid://c52psr4hppvee" path="res://Assets/Themes/Computer/Inset.png" id="6_c6mb1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwvat"]
 
 [node name="ComputerUi" type="Control" unique_id=1639805067]
+texture_filter = 1
 custom_minimum_size = Vector2(640, 480)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+theme = ExtResource("1_4n2js")
 script = ExtResource("1_5g1i0")
 
 [node name="MouseCursor" type="Control" parent="." unique_id=1706088393]
+visible = false
 top_level = true
+z_index = 4096
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-mouse_filter = 1
+mouse_filter = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="MouseCursor" unique_id=1249721165]
+[node name="TextureRect" type="TextureRect" parent="MouseCursor" unique_id=1377028405]
+texture_filter = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
 texture = ExtResource("1_0squw")
-offset = Vector2(16, 16)
 
 [node name="WallpaperColor" type="ColorRect" parent="." unique_id=1177178723]
 layout_mode = 1
@@ -31,46 +48,86 @@ color = Color(0, 0.5019608, 0.5019608, 1)
 
 [node name="WallpaperTexture" type="TextureRect" parent="." unique_id=897998184]
 visible = false
+texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("1_0squw")
+stretch_mode = 2
 
-[node name="TaskBarBG" type="ColorRect" parent="." unique_id=332290070]
-custom_minimum_size = Vector2(0, 30)
+[node name="TaskBarBG" type="TextureRect" parent="." unique_id=1963830193]
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -28.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme = ExtResource("1_4n2js")
+texture = ExtResource("4_4n2js")
 
-[node name="TaskBarHBox" type="HBoxContainer" parent="TaskBarBG" unique_id=182256895]
+[node name="MarginContainer" type="MarginContainer" parent="TaskBarBG" unique_id=2138899011]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TaskBarHBox" type="HBoxContainer" parent="TaskBarBG/MarginContainer" unique_id=182256895]
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Button" type="Button" parent="TaskBarBG/TaskBarHBox" unique_id=1035654421]
+[node name="StartButton" type="Button" parent="TaskBarBG/MarginContainer/TaskBarHBox" unique_id=1035654421]
 layout_mode = 2
 size_flags_horizontal = 2
+theme = ExtResource("1_4n2js")
+theme_override_fonts/font = ExtResource("5_vlep0")
+theme_override_font_sizes/font_size = 12
 text = "Start"
+icon = ExtResource("5_wvpvt")
 
-[node name="WindowButtons" type="HBoxContainer" parent="TaskBarBG/TaskBarHBox" unique_id=226555104]
+[node name="WindowButtons" type="HBoxContainer" parent="TaskBarBG/MarginContainer/TaskBarHBox" unique_id=226555104]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TaskBarBG/TaskBarHBox" unique_id=417264261]
+[node name="PanelContainer" type="PanelContainer" parent="TaskBarBG/MarginContainer/TaskBarHBox" unique_id=1683017303]
 layout_mode = 2
-size_flags_horizontal = 10
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uwvat")
 
-[node name="Label" type="Label" parent="TaskBarBG/TaskBarHBox/HBoxContainer2" unique_id=2022191938]
+[node name="NinePatchRect" type="NinePatchRect" parent="TaskBarBG/MarginContainer/TaskBarHBox/PanelContainer" unique_id=697153737]
 layout_mode = 2
+texture = ExtResource("6_c6mb1")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TaskBarBG/MarginContainer/TaskBarHBox/PanelContainer" unique_id=785942673]
+custom_minimum_size = Vector2(0, 22)
+custom_maximum_size = Vector2(-1, 22)
+layout_mode = 2
+theme = ExtResource("1_4n2js")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TaskBarBG/MarginContainer/TaskBarHBox/PanelContainer/MarginContainer" unique_id=417264261]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TaskBarBG/MarginContainer/TaskBarHBox/PanelContainer/MarginContainer/HBoxContainer2" unique_id=2022191938]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
 text = "10:30 PM"
 
 [node name="Button" type="Button" parent="." unique_id=206920065]
@@ -101,3 +158,21 @@ offset_right = 34.25
 offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="WindowsNode" type="Control" parent="." unique_id=761504004]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=521951785]
+layout_mode = 0
+offset_right = 589.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("5_vlep0")
+theme_override_font_sizes/font_size = 11
+text = " !\"#$%&'()*+,-./0123456789:;<=>?
+@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]&_
+`abcdefghijklmnopqrstuvwxyz{|}~
+A"
+
+[connection signal="pressed" from="TaskBarBG/MarginContainer/TaskBarHBox/StartButton" to="." method="_on_start_button_pressed"]

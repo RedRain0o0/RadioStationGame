@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dd8kpvhrn5ds3"]
+
+[ext_resource type="Script" uid="uid://ds43xqlum7o0" path="res://Scenes/Templates/BaseWindow.gd" id="1_du8tn"]
+[ext_resource type="Theme" uid="uid://bngx620dn0601" path="res://Assets/Themes/Computer/Computer.tres" id="1_x723c"]
+[ext_resource type="Texture2D" uid="uid://35o7i6rl2gt2" path="res://Assets/Themes/Computer/CloseButton.png" id="3_tfa8d"]
+
+[node name="BaseWindow" type="PanelContainer" unique_id=1192623678]
+texture_filter = 1
+offset_right = 200.0
+offset_bottom = 140.0
+theme = ExtResource("1_x723c")
+script = ExtResource("1_du8tn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1599435308]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FocusBar" type="ColorRect" parent="VBoxContainer" unique_id=149681418]
+custom_minimum_size = Vector2(0, 18)
+custom_maximum_size = Vector2(-1, 18)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0.5019608, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/FocusBar" unique_id=441292676]
+custom_minimum_size = Vector2(0, 18)
+custom_maximum_size = Vector2(-1, 18)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=1202330176]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="WindowTitle" type="Label" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=20523884]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("1_x723c")
+theme_override_font_sizes/font_size = 8
+text = "Window Title"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/FocusBar/HBoxContainer" unique_id=815379434]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/FocusBar/HBoxContainer/MarginContainer" unique_id=86916010]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MinimizeButton" type="TextureButton" parent="VBoxContainer/FocusBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=154632689]
+layout_mode = 2
+texture_normal = ExtResource("3_tfa8d")
+
+[node name="FullscreenButton" type="TextureButton" parent="VBoxContainer/FocusBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=840573711]
+layout_mode = 2
+texture_normal = ExtResource("3_tfa8d")
+
+[node name="Control" type="Control" parent="VBoxContainer/FocusBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1677186818]
+custom_minimum_size = Vector2(2, 0)
+custom_maximum_size = Vector2(2, -1)
+layout_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="VBoxContainer/FocusBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1378649071]
+layout_mode = 2
+theme = ExtResource("1_x723c")
+texture_normal = ExtResource("3_tfa8d")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1349308729]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="ColorRect" parent="VBoxContainer/MarginContainer" unique_id=358164942]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/TextureRect" unique_id=51227283]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 124.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Content"

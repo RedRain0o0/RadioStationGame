@@ -12,14 +12,11 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 [sub_resource type="ViewportTexture" id="ViewportTexture_2hff8"]
 viewport_path = NodePath("Monitor/MonitorScreen/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vqa8s"]
-viewport_path = NodePath("Monitor/MonitorScreen/SubViewport")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwvat"]
 resource_local_to_scene = true
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_2hff8")
-emission_enabled = true
-emission_texture = SubResource("ViewportTexture_vqa8s")
+texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_uwvat"]
 size = Vector2(0.4, 0.3)
